@@ -10,7 +10,7 @@ const messages = [
 
 const App = () => {
   const [step, setStep] = useState(1);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false)
 
   
 
@@ -22,19 +22,27 @@ const App = () => {
     if (step < 3) setStep((s) => s + 1)
   };
 
+  const handleCancel = () => {
+    setIsOpen((is) => !is)
+  }
+  const handleEnter = () => {
+    setIsOpen(false)
+  }
+
   return (
 
-    <>
+    <div>
 
-      <button className="close" onClick={() => setIsOpen((is) => !is)}>
+     
+      <button className=" close" onMouseEnter={handleCancel} onMouseLeave={handleEnter}>
         &times;
       </button>
 
-      {isOpen && (
+      {isOpen || (
 
     <div className=" w-[600px] bg-[#f7f7f7] rounded-md py-[25px] px-[100px] my-[100px] mx-auto">
       <div className=" flex justify-between items-center text-[18px] numbers">
-        <div className={step === 1 ? "active" : ""}>1</div>
+        <div className={step === 1 ? "active" : "" }>1</div>
         <div className={step === 2 ? "active" : ""}>2</div>
         <div className={step === 3 ? "active" : ""}>3</div>
       </div>
@@ -59,7 +67,7 @@ const App = () => {
       </div>
     </div>)
       }
-          </>
+          </div>
   );
 };
 
